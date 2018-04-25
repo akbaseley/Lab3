@@ -10,61 +10,51 @@ namespace Anna_Baseley_Lab3
     {
         static void Main(string[] args)
         {
-            //Input
-            string restart;
+            Console.WriteLine("Hello! What is your name?");
 
-            Console.WriteLine("Hi!  What's your name? I'm Anna");
             string UserName = Console.ReadLine();
-            Console.WriteLine($"Nice to meet you, {UserName}!  Let's play a game!");
 
-            do
+            Console.WriteLine($"Nice to meet you, {UserName}.");
+
+            while (true)
             {
-                Console.WriteLine("Please enter a number between 1 and 100.");
+                Console.WriteLine("Please give me a number between 1 and 100.");
                 int UserNumber = int.Parse(Console.ReadLine());
 
-                while (UserNumber < 0 || UserNumber > 100)
+
+                if ((UserNumber < 1) || (UserNumber > 100))
                 {
-                    Console.WriteLine($"Sorry, {UserName}. I need a positive number between 1 and 100.");
+                    Console.WriteLine($"Sorry, {UserName}!  Could you please give me a number between 1 and 100?");
                     UserNumber = int.Parse(Console.ReadLine());
                 }
 
-                //Processing & Output
-                if ((UserNumber % 2) != 0)
+                else if (UserNumber % 2 == 1)
                 {
-                    Console.WriteLine($"{UserNumber} is odd, {UserName}.");
+                    Console.WriteLine($"{UserNumber} is odd.");
                 }
 
                 else if (UserNumber <= 25)
                 {
-                    Console.WriteLine($"{UserName}, {UserNumber} is even and less than 25.");
+                    Console.WriteLine($"{UserNumber} is even and less than 25.");
                 }
-
                 else if (UserNumber <= 60)
-                {
-                    Console.WriteLine($"Your number is even, {UserName}.");
-                }
-                else
                 {
                     Console.WriteLine($"{UserNumber} is even.");
                 }
-
-                Console.WriteLine($"Thank you for playing, {UserName}, would you like to play again? (y/n).");
-                restart = Console.ReadLine();
-
-                while (restart.ToLower() != "y" && restart.ToLower() != "n")
+                else
                 {
-                    Console.WriteLine("Oops!  Let's try that again.  Would you like to continue? (y/n)");
-                    restart = Console.ReadLine();
+                    Console.WriteLine($"{UserNumber} is even");
                 }
 
-                if (restart != "y")
+                Console.WriteLine($"Would you like to play again, {UserName}?");
+                String UserContinue = Console.ReadLine();
+
+                if (UserContinue.ToLower() != "y")
                 {
-                    Console.WriteLine("Okay!  Thank you for playing!");
-                    Console.Clear();
+                    Console.WriteLine("Okay! See you next time!");
+                    break;
                 }
             }
-
-            while (restart.ToLower() == "y"); 
         }
     }
 }
