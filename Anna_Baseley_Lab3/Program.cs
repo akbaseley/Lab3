@@ -60,6 +60,7 @@ namespace Anna_Baseley_Lab3
                 if (restart != "y")
                 {
                     Console.WriteLine("Okay!  Thank you for playing!");
+                    Console.Clear();
                 }
             }
 
