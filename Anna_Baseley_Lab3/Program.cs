@@ -10,25 +10,23 @@ namespace Anna_Baseley_Lab3
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello! What is your name?");
-
-            string UserName = Console.ReadLine();
+            bool UserPlay = true;
+            string UserName = UserInput("Hello! What is your name?");
 
             Console.WriteLine($"Nice to meet you, {UserName}.");
 
-            while (true)
+            int UserNumber;
+
+            while (!int.TryParse(UserInput("Give me a number, please!"), out UserNumber)) ;
+
+            while (UserPlay)
             {
-                Console.WriteLine("Please give me a number between 1 and 100.");
-                int UserNumber = int.Parse(Console.ReadLine());
-
-
-                if ((UserNumber < 1) || (UserNumber > 100))
+                while ((UserNumber < 1) || (UserNumber > 100))
                 {
-                    Console.WriteLine($"Sorry, {UserName}!  Could you please give me a number between 1 and 100?");
-                    UserNumber = int.Parse(Console.ReadLine());
+                    while (!int.TryParse(UserInput($"Sorry, {UserName}!  Could you please give me a number between 1 and 100?"), out UserNumber)) ;
                 }
 
-                else if (UserNumber % 2 == 1)
+                if (UserNumber % 2 == 1)
                 {
                     Console.WriteLine($"{UserNumber} is odd.");
                 }
@@ -37,24 +35,32 @@ namespace Anna_Baseley_Lab3
                 {
                     Console.WriteLine($"{UserNumber} is even and less than 25.");
                 }
-                else if (UserNumber <= 60)
-                {
-                    Console.WriteLine($"{UserNumber} is even.");
-                }
                 else
                 {
                     Console.WriteLine($"{UserNumber} is even");
                 }
 
-                Console.WriteLine($"Would you like to play again, {UserName}?");
-                String UserContinue = Console.ReadLine();
+                string UserContinue = UserInput($"Would you like to play again, {UserName}?");
 
                 if (UserContinue.ToLower() != "y")
                 {
+                    UserPlay = false;
                     Console.WriteLine("Okay! See you next time!");
-                    break;
                 }
+                else
+                {
+                    UserPlay = true;
+                    while (!int.TryParse(UserInput("Great! Another number, please!"), out UserNumber)) ;
+                }
+
             }
+        }
+
+        public static string UserInput(string message)
+        {
+            Console.WriteLine(message);
+            string UserInput = Console.ReadLine();
+            return UserInput;
         }
     }
 }
